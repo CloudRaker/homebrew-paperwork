@@ -2,14 +2,14 @@
 
 ## How do I install these formulae?
 
-`brew install cloudraker/paperwork/<formula>`
+`brew install cloudraker/tap/<formula>`
 
-Or `brew tap cloudraker/paperwork` and then `brew install <formula>`.
+Or `brew tap cloudraker/tap` and then `brew install <formula>`.
 
 Or, in a `brew bundle` `Brewfile`:
 
 ```ruby
-tap "cloudraker/paperwork"
+tap "cloudraker/tap"
 brew "<formula>"
 ```
 
