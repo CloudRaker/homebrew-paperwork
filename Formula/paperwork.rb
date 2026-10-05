@@ -31,6 +31,17 @@ class Paperwork < Formula
     bin.install "paperwork"
   end
 
+  def caveats
+    manual = "#{Dir.home}/.local/bin/paperwork"
+    return unless File.exist?(manual)
+
+    <<~EOS
+      A copy from the shell installer exists at #{manual}.
+      It shadows or is shadowed by this one, depending on PATH. Remove it:
+        rm #{manual}
+    EOS
+  end
+
   test do
     assert_match "paperwork #{version}", shell_output("#{bin}/paperwork --version")
   end
