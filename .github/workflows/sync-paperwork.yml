@@ -40,6 +40,7 @@ jobs:
             # sha256 sits on the line after its url.
             sed -i "/paperwork-$target.tar.gz\"/{s#/cli/[^/]*/#/cli/$new/#;n;s/sha256 \".*\"/sha256 \"$sha\"/}" Formula/paperwork.rb
           done
+          sed -i "s/^\( *\)version \".*\"/\1version \"$new\"/" Formula/paperwork.rb
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
