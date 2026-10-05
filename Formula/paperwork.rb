@@ -1,7 +1,6 @@
 class Paperwork < Formula
   desc "CLI for the CloudRaker Paperwork API"
   homepage "https://paperwork.sh"
-  version "0.0.6"
 
   # Prebuilt archives live in R2 (https://release.paperwork.sh), not GitHub
   # releases. Keys: cli/<semver>/paperwork-<rust-target>.tar.gz
