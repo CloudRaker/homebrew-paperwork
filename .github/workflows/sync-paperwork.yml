@@ -1,0 +1,48 @@
+# Keeps Formula/paperwork.rb on the newest CLI release. Releases land in R2, not
+# GitHub, so `brew bump` cannot see them: cloudraker-sdk's build-cli.yml
+# dispatches this workflow with the version once the archives are uploaded.
+name: sync paperwork
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Released CLI version, e.g. 0.0.7
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-paperwork
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Update formula
+        shell: bash
+        env:
+          NEW: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          base=https://release.paperwork.sh/cli
+          new="$NEW"
+          [[ $new =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.+][0-9A-Za-z.-]+)?$ ]] || { echo "bad VERSION '$new'"; exit 1; }
+          old="$(sed -n 's/^  version "\(.*\)"/\1/p' Formula/paperwork.rb)"
+          [[ $new != "$old" ]] || { echo "already at $old"; exit 0; }
+
+          for target in aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-musl x86_64-unknown-linux-musl; do
+            sha="$(curl -fsSL "$base/$new/paperwork-$target.tar.gz" | sha256sum | cut -d' ' -f1)"
+            [[ $sha =~ ^[0-9a-f]{64}$ ]]
+            # sha256 sits on the line after its url.
+            sed -i "/paperwork-$target.tar.gz\"/{s#/cli/[^/]*/#/cli/$new/#;n;s/sha256 \".*\"/sha256 \"$sha\"/}" Formula/paperwork.rb
+          done
+          sed -i "s/^  version \".*\"/  version \"$new\"/" Formula/paperwork.rb
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "paperwork $new"
+          git push
