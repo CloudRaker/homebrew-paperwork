@@ -1,6 +1,6 @@
 # Keeps Formula/paperwork.rb on the newest CLI release. Releases land in R2, not
-# GitHub, so `brew bump` cannot see them: cloudraker-sdk's build-cli.yml
-# dispatches this workflow with the version once the archives are uploaded.
+# GitHub, so `brew bump` cannot see them: the CLI release workflow dispatches
+# this workflow with the version once the archives are uploaded.
 name: sync paperwork
 
 on:
