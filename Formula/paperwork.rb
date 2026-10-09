@@ -10,25 +10,25 @@ class Paperwork < Formula
   # not: `brew audit` rejects it as redundant. The sync workflow updates all.
   on_macos do
     on_arm do
-      url "https://release.paperwork.sh/cli/0.0.6/paperwork-aarch64-apple-darwin.tar.gz"
-      sha256 "4140bff8300043ec094e637dcce1281a2281f69c09023cdcb22ab83ebfcd8111"
+      url "https://release.paperwork.sh/cli/0.0.8/paperwork-aarch64-apple-darwin.tar.gz"
+      sha256 "544c94bdb112c11435a6c5114529f8089c4447af122899804415c7d07dc45994"
     end
     on_intel do
-      version "0.0.6"
-      url "https://release.paperwork.sh/cli/0.0.6/paperwork-x86_64-apple-darwin.tar.gz"
-      sha256 "3c3e075d220c9dbd30639c125b75400974a8df6685780793e4a979b612421604"
+      version "0.0.8"
+      url "https://release.paperwork.sh/cli/0.0.8/paperwork-x86_64-apple-darwin.tar.gz"
+      sha256 "15ab6e06b7403d78d20057ab3a612d9fb254ce21353602f4c9e37b994b63f4e8"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://release.paperwork.sh/cli/0.0.6/paperwork-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "dae8fcf651a7ce62fd062a414f3d54ebfd80d2e6ac9eb806606c5492e28fe074"
+      url "https://release.paperwork.sh/cli/0.0.8/paperwork-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "6796a097302616277eafc628a758506df7564c9d7fc7f2d4c29f0c8836ad86e0"
     end
     on_intel do
-      version "0.0.6"
-      url "https://release.paperwork.sh/cli/0.0.6/paperwork-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "210667fd8e27624e0594c8c3975a017ccbab899587704d1459c72ed28cedfdb2"
+      version "0.0.8"
+      url "https://release.paperwork.sh/cli/0.0.8/paperwork-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "92a67aa2c6066d0e3992093fc46ae8f6c8380734ddb727edaadad6d2147c3539"
     end
   end
 
